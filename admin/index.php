@@ -25,7 +25,7 @@
    echo $row['username'];
  }
  ?>
-, voici la Liste de vos biens :</h5>
+, voici la liste de vos biens :</h5>
     </div>
     <div class="col-md-2">
         <h5><a href="index.php?page=insert">Ajouter un bien</a></h5>

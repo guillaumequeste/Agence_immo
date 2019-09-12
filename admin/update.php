@@ -7,12 +7,13 @@
         $id = checkInput($_GET['id']);
     }
 
-    $titleError = $descriptionError = $surfaceError = $roomsError = $bedroomsError = $priceError = $addressError = $postal_codeError = $cityError = $imageError = $title = $description = $surface = $rooms = $bedrooms = $price = $address = $postal_code = $city = $image = "";
+    $titleError = $descriptionError = $surfaceError = $roomsError = $bedroomsError = $priceError = $addressError = $postal_codeError = $cityError = $imageError = $type = $title = $description = $surface = $rooms = $bedrooms = $price = $address = $postal_code = $city = $image = "";
     $succes = null;
     $erreur = null;
 
     if(!empty($_POST)) 
     {
+        $type = checkInput($_POST['type']);
         $title = checkInput($_POST['title']);
         $description = checkInput($_POST['description']);
         $surface = checkInput($_POST['surface']);
@@ -109,13 +110,13 @@
         { 
             if($isImageUpdated)
             {
-                $statement = $pdo->prepare("UPDATE biens  set title = ?, description = ?, surface = ?, rooms = ?, bedrooms = ?, price = ?, address = ?, postal_code = ?, city = ?, image = ? WHERE id = ?");
-                $statement->execute([$title,$description,$surface,$rooms,$bedrooms,$price,$address,$postal_code,$city,$image,$id]);
+                $statement = $pdo->prepare("UPDATE biens  set type = ?, title = ?, description = ?, surface = ?, rooms = ?, bedrooms = ?, price = ?, address = ?, postal_code = ?, city = ?, image = ? WHERE id = ?");
+                $statement->execute([$type, $title,$description,$surface,$rooms,$bedrooms,$price,$address,$postal_code,$city,$image,$id]);
             }
             else
             {
-                $statement = $pdo->prepare("UPDATE biens  set title = ?, description = ?, surface = ?, rooms = ?, bedrooms = ?, price = ?, address = ?, postal_code = ?, city = ? WHERE id = ?");
-                $statement->execute([$title,$description,$surface,$rooms,$bedrooms,$price,$address,$postal_code,$city,$id]);
+                $statement = $pdo->prepare("UPDATE biens  set type = ?, title = ?, description = ?, surface = ?, rooms = ?, bedrooms = ?, price = ?, address = ?, postal_code = ?, city = ? WHERE id = ?");
+                $statement->execute([$type, $title,$description,$surface,$rooms,$bedrooms,$price,$address,$postal_code,$city,$id]);
             }
             $succes = "Le bien a été modifié correctement.";
         }
@@ -133,6 +134,7 @@
         $statement = $pdo->prepare("SELECT * FROM biens where id = ?");
         $statement->execute([$id]);
         $item = $statement->fetch();
+        $type = $item['type'];
         $title = $item['title'];
         $description = $item['description'];
         $surface = $item['surface'];
@@ -168,6 +170,14 @@
 <?php endif ?>
 
 <form class="form mb-4" action="<?= 'index.php?page=update&id='.$id;?>" role="form" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="type">Type :</label>
+        <select name="type">
+            <option value="<?= $type ?>"><?= $type ?></option>
+            <option value="maison">Maison</option>
+            <option value="appartement">Appartement</option>
+        </select>
+    </div>    
     <div class="form-group">
         <label for="title">Titre :</label>
         <input type="text" class="form-control" id="title" name="title" placeholder="Titre" value="<?= $title;?>">

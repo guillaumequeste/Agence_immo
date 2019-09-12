@@ -2,12 +2,13 @@
      
      include("../lib/connexion.php");
  
-    $titleError = $descriptionError = $surfaceError = $roomsError = $bedroomsError = $imageError = $priceError = $addressError = $postal_codeError = $cityError = $title = $description = $surface = $rooms = $bedrooms = $price = $address = $postal_code = $city = $image = "";
+    $typeError = $titleError = $descriptionError = $surfaceError = $roomsError = $bedroomsError = $imageError = $priceError = $addressError = $postal_codeError = $cityError = $type = $title = $description = $surface = $rooms = $bedrooms = $price = $address = $postal_code = $city = $image = "";
     $succes = null;
     $erreur = null;
 
     if(!empty($_POST)) 
     {
+        $type = checkInput($_POST['type']);
         $title = checkInput($_POST['title']);
         $description = checkInput($_POST['description']);
         $surface = checkInput($_POST['surface']);
@@ -23,6 +24,11 @@
         $isSuccess  = true;
         $isUploadSuccess    = false;
         
+        if(empty($type)) 
+        {
+            $typeError = 'Vous devez choisir un type';
+            $isSuccess = false;
+        }
         if(empty($title)) 
         {
             $titleError = 'Ce champ ne peut pas être vide';
@@ -103,8 +109,8 @@
         
         if($isSuccess && $isUploadSuccess) 
         {
-            $statement = $pdo->prepare("INSERT INTO biens (title,description,surface,rooms,bedrooms,price,address,postal_code,city,image,created_at) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
-            $statement->execute([$title,$description,$surface,$rooms,$bedrooms,$price,$address,$postal_code,$city,$image]);
+            $statement = $pdo->prepare("INSERT INTO biens (type, title,description,surface,rooms,bedrooms,price,address,postal_code,city,image,created_at) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
+            $statement->execute([$type,$title,$description,$surface,$rooms,$bedrooms,$price,$address,$postal_code,$city,$image]);
             $succes = 'Le bien a été ajouté.';
         } else {
             $erreur = "Le bien n'a pas été ajouté correctement.";
@@ -132,7 +138,16 @@
 </div>
 <?php endif ?>
 
-<form class="form" action="index.php?page=insert" role="form" method="post" enctype="multipart/form-data">
+<form class="form mb-4" action="index.php?page=insert" role="form" method="post" enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="type">Type :</label>
+        <select name="type">
+            <option value="">Veuillez choisir un type</option>
+            <option value="maison">Maison</option>
+            <option value="appartement">Appartement</option>
+        </select>
+        <span class="help-inline"><?= $typeError;?></span>
+    </div>
     <div class="form-group">
         <label for="title">Titre :</label>
         <input type="text" class="form-control" id="title" name="title" placeholder="Titre" value="<?= $title;?>">
@@ -180,7 +195,8 @@
     </div>
     <div class="form-group">
         <label for="image">Sélectionner une image:</label>
-        <input type="file" id="image" name="image"> 
+        <input type="file" id="image" name="image">
+        <span>Si le fichier existe déjà, renommer le fichier avant de l'ajouter.</span>
         <span class="help-inline"><?= $imageError;?></span>
     </div>
     <div class="form-actions">

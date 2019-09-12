@@ -6,7 +6,7 @@
         $id = checkInput($_GET['id']);
     }
      
-    $statement = $pdo->prepare("SELECT biens.id, biens.title, biens.description, biens.surface, biens.rooms, biens.bedrooms, biens.price, biens.address, biens.postal_code, biens.city, biens.image FROM biens WHERE biens.id = ?");
+    $statement = $pdo->prepare("SELECT biens.id, biens.type, biens.title, biens.description, biens.surface, biens.rooms, biens.bedrooms, biens.price, biens.address, biens.postal_code, biens.city, biens.image FROM biens WHERE biens.id = ?");
     $statement->execute([$id]);
     $bien = $statement->fetch();
 
@@ -22,6 +22,9 @@
 
 <form class="row">
     <div class="col-md-6 mt-4">
+        <div class="form-group">
+            <label>Type :</label><?= '  '.$bien['type'];?>
+        </div>
         <div class="form-group">
             <label>Titre :</label><?= '  '.$bien['title'];?>
         </div>
