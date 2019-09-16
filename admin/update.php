@@ -194,6 +194,16 @@
 </div>
 <?php endif ?>
 
+<?php if ($erreurPhotos): ?>
+<div class="alert alert-danger">
+    <?= $erreurPhotos ?>
+</div>
+<?php elseif ($succesPhotos): ?>
+<div class="alert alert-success">
+    <?= $succesPhotos ?>
+</div>
+<?php endif ?>
+
 <form class="form mb-4" action="<?= 'index.php?page=update&id='.$id;?>" role="form" method="post" enctype="multipart/form-data">
     <div class="form-group">
         <label for="type">Type :</label>
@@ -280,18 +290,20 @@
  </form>
 
 <!-- affichage des photos -->
-<?php
-$query = $pdo->query("SELECT * FROM biens LEFT JOIN images ON biens.id = images.bien_id WHERE biens.id = $id");
-while ($donnees = $query->fetch())
-{
-if (isset($donnees['image'])): ?>
-<div class="container pb-4">
-    <div class="container" style="display:flex;flex-direction:column;">
-        <img src="./images/<?= $donnees['name'];?>" style="width:150px;">
-        <button style="width:150px;"><a href="index.php?page=deletePhotos&id=<?=$donnees['id']?>" style="text-decoration:none;color:black;">supprimer</a></button>
+<div class="row">
+    <div class="col-3">
+    <?php
+    $query = $pdo->query("SELECT * FROM biens LEFT JOIN images ON biens.id = images.bien_id WHERE biens.id = $id");
+    while ($donnees = $query->fetch())
+    {
+    if (isset($donnees['image'])): ?>
+        <div class="container pb-4">
+            <img src="./images/<?= $donnees['name'];?>" style="width:150px;">
+            <button style="width:150px;"><a href="index.php?page=deletePhotos&id=<?=$donnees['id']?>" style="text-decoration:none;color:black;">supprimer</a></button>
+        </div>
+    <?php
+    endif;
+    }
+    ?>
     </div>
 </div>
-<?php
-endif;
-}
-?>

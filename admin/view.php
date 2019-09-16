@@ -22,20 +22,21 @@
 
 <h1 style="text-align:center;"><?= $bien['type'] ?> <?= $bien['title'] ?></h1>
 
-<div class="pt-4 pb-4" style="text-align:center;">
-        <div class="pb-4">
-            <img src="./images/<?= $bien['image'];?>" alt="<?= $bien['title'] ?>" style="width:60vw;height:60vh;">
-        </div>
+<div class="row">
+    <div class="col-md-6 col-12 p-4">
+        <img src="./images/<?= $bien['image'];?>" alt="<?= $bien['title'] ?>" style="width:90%;height:40vh">
+    </div>
+    <div class="col-md-6 p-4">
         <?php
-$query = $pdo->query("SELECT * FROM biens LEFT JOIN images ON biens.id = images.bien_id WHERE biens.id = $id");
-while ($donnees = $query->fetch())
-{
-    if (isset($donnees['image'])): ?>
-<img src="./images/<?= $donnees['name'];?>">
-<?php
-endif;
-}
-?>
+        $query = $pdo->query("SELECT * FROM biens LEFT JOIN images ON biens.id = images.bien_id WHERE biens.id = $id");
+        while ($donnees = $query->fetch()) {
+            if (isset($donnees['image'])): ?>
+            <img src="./images/<?= $donnees['name'];?>" style="width:100px;height:100px;">
+        <?php
+            endif;
+            }
+        ?>
+    </div>
 </div>
 
 <div class="row">
