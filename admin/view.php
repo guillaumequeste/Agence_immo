@@ -20,56 +20,40 @@
 
 ?>
 
-<form class="row">
-    <div class="col-md-6 mt-4">
-        <div class="form-group">
-            <label>Type :</label><?= '  '.$bien['type'];?>
-        </div>
-        <div class="form-group">
-            <label>Titre :</label><?= '  '.$bien['title'];?>
-        </div>
-        <div class="form-group">
-            <label>Description :</label><?= '  '.$bien['description'];?>
-        </div>
-        <div class="form-group">
-            <label>Surface :</label><?= '  '.$bien['surface'];?>
-        </div>
-        <div class="form-group">
-            <label>Nombre de pièces :</label><?= '  '.$bien['rooms'];?>
-        </div>
-        <div class="form-group">
-            <label>Nombre de chambres :</label><?= '  '.$bien['bedrooms'];?>
-        </div>
-        <div class="form-group">
-            <label>Prix :</label><?= '  ' . (int)$bien['price'] . ' €';?>
-        </div>
-        <div class="form-group">
-            <label>Adresse :</label><?= '  '.$bien['address'];?>
-        </div>
-        <div class="form-group">
-            <label>Code postal :</label><?= '  '.$bien['postal_code'];?>
-        </div>
-        <div class="form-group">
-            <label>Ville :</label><?= '  '.$bien['city'];?>
-        </div>
-    </div>
-    <div class="col-md-6 mt-4">
-        <div class="form-group">
-            <img src="./images/<?= $bien['image'];?>" alt="<?= $bien['title'] ?>">
-        </div>
-    </div>
-</form>
+<h1 style="text-align:center;"><?= $bien['type'] ?> <?= $bien['title'] ?></h1>
 
-<?php
+<div class="pt-4 pb-4" style="text-align:center;">
+        <div class="pb-4">
+            <img src="./images/<?= $bien['image'];?>" alt="<?= $bien['title'] ?>" style="width:60vw;height:60vh;">
+        </div>
+        <?php
 $query = $pdo->query("SELECT * FROM biens LEFT JOIN images ON biens.id = images.bien_id WHERE biens.id = $id");
 while ($donnees = $query->fetch())
 {
     if (isset($donnees['image'])): ?>
-<img src="./images/<?= $donnees['name'];?>" style="width:10%;">
+<img src="./images/<?= $donnees['name'];?>">
 <?php
 endif;
 }
 ?>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <p>Description : <?= '  '.$bien['description'];?></p>
+        <p>Surface : <?= '  '.$bien['surface'];?></p>
+        <p>Nombre de pièces : <?= '  '.$bien['rooms'];?></p>
+        <p>Nombre de chambres : <?= '  '.$bien['bedrooms'];?></p>
+    </div>
+    <div class="col-md-6">
+        <p>Prix : <?= '  ' . (int)$bien['price'] . ' €';?></p>
+        <p>Adresse : <?= '  '.$bien['address'];?></p>
+        <p>Code postal : <?= '  '.$bien['postal_code'];?></p>
+        <p>Ville : <?= '  '.$bien['city'];?></p>
+    </div>
+</div>
+
+
 
 <div class="form-actions">
     <a href="index.php?page=admin">Retour</a>
