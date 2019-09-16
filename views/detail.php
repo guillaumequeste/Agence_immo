@@ -27,26 +27,10 @@
         <img src="./images/<?= $bien['image'];?>" alt="<?= $bien['title'] ?>" style="width:90%;height:40vh">
     </div>
     <div class="col-md-6 p-4">
-        <?php
-        $query = $pdo->query("SELECT * FROM biens LEFT JOIN images ON biens.id = images.bien_id WHERE biens.id = $id");
-        while ($donnees = $query->fetch()) {
-            if (isset($donnees['image'])): ?>
-            <img src="./images/<?= $donnees['name'];?>" style="width:100px;height:100px;">
-        <?php
-            endif;
-            }
-        ?>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-6">
         <p>Description : <?= '  '.$bien['description'];?></p>
         <p>Surface : <?= '  '.$bien['surface'];?></p>
         <p>Nombre de pièces : <?= '  '.$bien['rooms'];?></p>
         <p>Nombre de chambres : <?= '  '.$bien['bedrooms'];?></p>
-    </div>
-    <div class="col-md-6">
         <p>Prix : <?= '  ' . (int)$bien['price'] . ' €';?></p>
         <p>Adresse : <?= '  '.$bien['address'];?></p>
         <p>Code postal : <?= '  '.$bien['postal_code'];?></p>
@@ -54,7 +38,31 @@
     </div>
 </div>
 
-
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+    <?php
+    $query = $pdo->query("SELECT * FROM biens LEFT JOIN images ON biens.id = images.bien_id WHERE biens.id = $id");
+    $counter = 1;
+    while ($donnees = $query->fetch()) {
+    ?>
+        <div class="carousel-item <?php if ($counter === 1) { echo 'active'; } ?>" style="width:85vw;height:500px;">
+            <img class="d-block w-100" src="./images/<?= $donnees['name'];?>" style="width:85vw;height:500px;">
+        </div>
+        <?php
+        $counter++;
+        }
+        $query->closeCursor();
+        ?>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
 
 <div class="form-actions">
     <a href="index.php?page=home">Retour</a>
