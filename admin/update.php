@@ -7,9 +7,12 @@
         $id = checkInput($_GET['id']);
     }
 
+    // modifier les données concernant le bien
     $titleError = $descriptionError = $surfaceError = $roomsError = $bedroomsError = $priceError = $addressError = $postal_codeError = $cityError = $imageError = $type = $title = $description = $surface = $rooms = $bedrooms = $price = $address = $postal_code = $city = $image = "";
     $succes = null;
     $erreur = null;
+    $succesPhotos = null;
+    $erreurPhotos = null;
 
     if(!empty($_POST)) 
     {
@@ -119,6 +122,7 @@
                 $statement->execute([$type, $title,$description,$surface,$rooms,$bedrooms,$price,$address,$postal_code,$city,$id]);
             }
             $succes = "Le bien a été modifié correctement.";
+            header("refresh:2; index.php?page=admin");
         }
         else if($isImageUpdated && !$isUploadSuccess)
         {
@@ -154,6 +158,27 @@
       $data = htmlspecialchars($data);
       return $data;
     }
+
+    // ajout de photos
+    if(isset($_POST['submit'])){
+        $countfiles = count($_FILES['files']['name']);
+        $id = checkInput($_GET['id']);
+        $query = "INSERT INTO images (bien_id,name,image) VALUES($id,?,?)";
+        $statement = $pdo->prepare($query);
+        for($i=0;$i<$countfiles;$i++){
+          $filename = $_FILES['files']['name'][$i];
+          $ext = end((explode(".", $filename)));
+          $valid_ext = array("png","jpeg","jpg");
+          if(in_array($ext, $valid_ext)){
+            if(move_uploaded_file($_FILES['files']['tmp_name'][$i],'../public/images/'.$filename)){
+              $statement->execute(array($filename,'../public/images/'.$filename));
+            } else {
+             $erreurPhotos = "L'enregistrement a échoué";
+             }
+          }
+        }
+        $succesPhotos = "Enregistrement réussi";
+      }
 
 ?>
 
@@ -224,8 +249,8 @@
         <span class="help-inline"><?= $cityError;?></span>
     </div>
     <div class="form-group">
-        <label for="image">Image:</label>
-        <img src="./images/<?= $image;?>" />
+        <label for="image">Image :</label>
+        <img src="./images/<?= $image;?>" style="width:300px;"/>
         <label for="image">Sélectionner une nouvelle image:</label>
         <input type="file" id="image" name="image"> 
         <span class="help-inline"><?= $imageError;?></span>
@@ -235,3 +260,38 @@
         <a class="btn btn-primary" href="index.php?page=admin"><span class="glyphicon glyphicon-arrow-left"></span> Retour</a>
     </div>
 </form>
+
+<h1>Ajouter des photos</h1>
+ 
+<?php if ($erreurPhotos): ?>
+<div class="alert alert-danger">
+    <?= $erreurPhotos ?>
+</div>
+<?php elseif ($succesPhotos): ?>
+<div class="alert alert-success">
+    <?= $succesPhotos ?>
+</div>
+<?php endif ?>
+
+ <!-- formulaire pour l'ajout de photos -->
+ <form method='post' action='' enctype='multipart/form-data' class="pt-4 pb-4">
+   <input type='file' name='files[]' multiple />
+   <input type='submit' value='Valider' name='submit' />
+ </form>
+
+<!-- affichage des photos -->
+<?php
+$query = $pdo->query("SELECT * FROM biens LEFT JOIN images ON biens.id = images.bien_id WHERE biens.id = $id");
+while ($donnees = $query->fetch())
+{
+if (isset($donnees['image'])): ?>
+<div class="container pb-4">
+    <div class="container" style="display:flex;flex-direction:column;">
+        <img src="./images/<?= $donnees['name'];?>" style="width:150px;">
+        <button style="width:150px;"><a href="index.php?page=deletePhotos&id=<?=$donnees['id']?>" style="text-decoration:none;color:black;">supprimer</a></button>
+    </div>
+</div>
+<?php
+endif;
+}
+?>

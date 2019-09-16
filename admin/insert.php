@@ -112,6 +112,7 @@
             $statement = $pdo->prepare("INSERT INTO biens (type, title,description,surface,rooms,bedrooms,price,address,postal_code,city,image,created_at) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, NOW())");
             $statement->execute([$type,$title,$description,$surface,$rooms,$bedrooms,$price,$address,$postal_code,$city,$image]);
             $succes = 'Le bien a été ajouté.';
+            header("refresh:2; index.php?page=admin");
         } else {
             $erreur = "Le bien n'a pas été ajouté correctement.";
         }

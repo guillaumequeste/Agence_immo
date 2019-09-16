@@ -12,9 +12,9 @@
     if(!empty($_POST)) 
     {
         $id = checkInput($_POST['id']);
-        $statement = $pdo->prepare("DELETE FROM biens WHERE id = ?");
+        $statement = $pdo->prepare("DELETE FROM images WHERE id = ?");
         $statement->execute([$id]);
-        $succes = "Le bien a été supprimé.";
+        $succes = "Suppression réussie";
         header("refresh:2; index.php?page=admin");
     }
 
@@ -27,7 +27,7 @@
     }
 ?>
 
-<h1>Supprimer un item</h1>
+<h1>Supprimer une photo</h1>
 
 <?php if ($erreur): ?>
 <div class="alert alert-danger">
@@ -39,7 +39,7 @@
 </div>
 <?php endif ?>
 
-<form class="form" action="index.php?page=delete" role="form" method="post">
+<form class="form" action="index.php?page=deletePhotos" role="form" method="post">
     <input type="hidden" name="id" value="<?= $id;?>"/>
     <p>Etes vous sur de vouloir supprimer ?</p>
     <div class="form-actions">

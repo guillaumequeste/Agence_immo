@@ -39,8 +39,8 @@ $page = $_REQUEST["page"] ?? "home";
     case 'logout' :
       $fichier = "../admin/logout.php";
       break;
-    case 'welcome' :
-      $fichier = "../admin/welcome.php";
+    case 'deletePhotos' :
+      $fichier = "../admin/deletePhotos.php";
       break;
     default:
       $fichier = "404.php";

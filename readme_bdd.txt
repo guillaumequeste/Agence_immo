@@ -20,3 +20,9 @@ Table "users" :
     - username : varchar(255)
     - email : varchar(255)
     - password : varchar(255)
+
+Table "images" :
+    - id : int clé primaire AUTO-INCREMENT
+    - bien_id : int
+    - name : varchar(255)
+    - image : varchar(255)
