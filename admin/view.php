@@ -22,11 +22,11 @@
 
 <h1 style="text-align:center;"><?= $bien['type'] ?> <?= $bien['title'] ?></h1>
 
-<div class="row">
-    <div class="col-md-6 col-12 p-4">
+<div class="row p-4">
+    <div class="col-md-6 col-12">
         <img src="./images/<?= $bien['image'];?>" alt="<?= $bien['title'] ?>" style="width:90%;height:40vh">
     </div>
-    <div class="col-md-6 p-4">
+    <div class="col-md-6">
         <p>Description : <?= '  '.$bien['description'];?></p>
         <p>Surface : <?= '  '.$bien['surface'];?></p>
         <p>Nombre de pièces : <?= '  '.$bien['rooms'];?></p>
@@ -38,7 +38,9 @@
     </div>
 </div>
 
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+<h2 style="text-align:center;">Plus de photos</h2>
+
+<div id="carouselExampleControls" class="carousel slide ml-4" data-ride="carousel">
     <div class="carousel-inner">
     <?php
     $query = $pdo->query("SELECT * FROM biens LEFT JOIN images ON biens.id = images.bien_id WHERE biens.id = $id");
@@ -64,6 +66,6 @@
     </a>
 </div>
 
-<div class="form-actions">
+<div class="form-actions mt-4 mb-4">
     <a href="index.php?page=admin">Retour</a>
 </div>

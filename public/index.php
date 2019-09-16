@@ -7,3 +7,5 @@
 
 <!-- Ici, on rélaise l'include -->
 <?php include("../views/$fichier"); ?>
+
+<?php require '../views/footer.php'; ?>

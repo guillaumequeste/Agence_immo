@@ -64,6 +64,6 @@
     </a>
 </div>
 
-<div class="form-actions">
+<div class="form-actions mt-4 mb-4">
     <a href="index.php?page=home">Retour</a>
 </div>
