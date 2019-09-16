@@ -46,12 +46,13 @@
     $query = $pdo->query("SELECT * FROM biens LEFT JOIN images ON biens.id = images.bien_id WHERE biens.id = $id");
     $counter = 1;
     while ($donnees = $query->fetch()) {
-    ?>
+        if (isset($donnees['image'])): ?>
         <div class="carousel-item <?php if ($counter === 1) { echo 'active'; } ?>" style="width:85vw;height:500px;">
             <img class="d-block w-100" src="./images/<?= $donnees['name'];?>" style="width:85vw;height:500px;">
         </div>
         <?php
         $counter++;
+    endif;
         }
         $query->closeCursor();
         ?>
