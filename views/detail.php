@@ -1,4 +1,5 @@
 <?php
+
     include("../lib/connexion.php");
 
     if(!empty($_GET['id'])) 
@@ -20,21 +21,21 @@
 
 ?>
 
-<h1 style="text-align:center;"><?= $bien['type'] ?> <?= $bien['title'] ?></h1>
+<h1 style="text-align:center;"><?= $bien['type'] ?> à <?= $bien['city'] ?></h1>
 
 <div class="row">
     <div class="col-md-6 col-12 p-4">
         <img src="./images/<?= $bien['image'];?>" alt="<?= $bien['title'] ?>" style="width:90%;height:40vh">
     </div>
     <div class="col-md-6 p-4">
-        <p>Description : <?= '  '.$bien['description'];?></p>
-        <p>Surface : <?= '  '.$bien['surface'];?></p>
-        <p>Nombre de pièces : <?= '  '.$bien['rooms'];?></p>
-        <p>Nombre de chambres : <?= '  '.$bien['bedrooms'];?></p>
-        <p>Prix : <?= '  ' . (int)$bien['price'] . ' €';?></p>
-        <p>Adresse : <?= '  '.$bien['address'];?></p>
-        <p>Code postal : <?= '  '.$bien['postal_code'];?></p>
-        <p>Ville : <?= '  '.$bien['city'];?></p>
+        <p><strong>Description : </strong><?= '  '.$bien['description'];?></p>
+        <p><strong>Surface : </strong><?= '  '.$bien['surface'];?> m2</p>
+        <p><strong>Nombre de pièces : </strong><?= '  '.$bien['rooms'];?></p>
+        <p><strong>Nombre de chambres : </strong><?= '  '.$bien['bedrooms'];?></p>
+        <p><strong>Prix : </strong><?= number_format($bien['price'], 0, ',', ' '); ?> €</p>
+        <p><strong>Adresse : </strong><?= '  '.$bien['address'];?></p>
+        <p><strong>Code postal : </strong><?= '  '.$bien['postal_code'];?></p>
+        <p><strong>Ville : </strong><?= '  '.$bien['city'];?></p>
     </div>
 </div>
 

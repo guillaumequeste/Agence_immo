@@ -182,7 +182,7 @@
 
 ?>
 
-<h1><strong>Modifier un bien</strong></h1>
+<h1 style="text-align: center;"><strong>Modifier un bien</strong></h1>
 
 <?php if ($erreur): ?>
 <div class="alert alert-danger">
@@ -271,7 +271,7 @@
     </div>
 </form>
 
-<h1>Ajouter des photos</h1>
+<h4>Ajouter des photos</h4>
  
 <?php if ($erreurPhotos): ?>
 <div class="alert alert-danger">

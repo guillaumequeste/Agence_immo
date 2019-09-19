@@ -1,0 +1,14 @@
+{
+    "name": "guillaumequeste/agence_immo",
+    "description": "agence immobilière",
+    "authors": [{
+        "name": "Guillaume Queste",
+        "email": "guillaume.queste@laposte.net"
+    }],
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "require": {}
+}

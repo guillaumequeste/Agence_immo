@@ -44,7 +44,7 @@ Autoloader:
 
   Résumé autoloader :
   1 - générer le fichier autoload.php
-  2 - indiquer dans la classe le namespace qui correcpond au chemin du fichier
+  2 - indiquer dans la classe le namespace qui correspond au chemin du fichier
   3 - dans le fichier index.php, par exemple, require autoload.php et use le chemin vers la classe
     ex : Text.php -> namespace App\Helpers;
          index.php -> require '../vendor/autoload.php';

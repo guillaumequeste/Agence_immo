@@ -127,7 +127,7 @@
     }
 ?>
 
-<h1>Ajouter un bien</h1>
+<h1 style="text-align:center;">Ajouter un bien</h1>
 
 <?php if ($erreur): ?>
 <div class="alert alert-danger">
@@ -144,8 +144,8 @@
         <label for="type">Type :</label>
         <select name="type">
             <option value="">Veuillez choisir un type</option>
-            <option value="maison">Maison</option>
-            <option value="appartement">Appartement</option>
+            <option value="Maison">Maison</option>
+            <option value="Appartement">Appartement</option>
         </select>
         <span class="help-inline"><?= $typeError;?></span>
     </div>

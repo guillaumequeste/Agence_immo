@@ -31,14 +31,13 @@
         <p>Surface : <?= '  '.$bien['surface'];?></p>
         <p>Nombre de pièces : <?= '  '.$bien['rooms'];?></p>
         <p>Nombre de chambres : <?= '  '.$bien['bedrooms'];?></p>
-        <p>Prix : <?= '  ' . (int)$bien['price'] . ' €';?></p>
+        <p>Prix : <?= number_format($bien['price'], 0, ',', ' ');?> €</p>
         <p>Adresse : <?= '  '.$bien['address'];?></p>
         <p>Code postal : <?= '  '.$bien['postal_code'];?></p>
         <p>Ville : <?= '  '.$bien['city'];?></p>
     </div>
 </div>
 
-<h2 style="text-align:center;">Plus de photos</h2>
 
 <div id="carouselExampleControls" class="carousel slide ml-4" data-ride="carousel">
     <div class="carousel-inner">

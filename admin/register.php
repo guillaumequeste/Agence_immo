@@ -85,21 +85,21 @@ if (isset($registerMsg))
   <div class="form-group">
     <label class="col-sm-3 control-label">Nom d'utilisateur</label>
     <div class="col-sm-6">
-      <input type="text" name="txt_username" class="form-control" placeholder="enter username" />
+      <input type="text" name="txt_username" class="form-control" placeholder="entrez un nom d'utilisateur" />
     </div>
   </div>
     
   <div class="form-group">
     <label class="col-sm-3 control-label">Email</label>
     <div class="col-sm-6">
-      <input type="text" name="txt_email" class="form-control" placeholder="enter email" />
+      <input type="text" name="txt_email" class="form-control" placeholder="entrez un email" />
     </div>
   </div>
      
   <div class="form-group">
     <label class="col-sm-3 control-label">Mot de passe</label>
     <div class="col-sm-6">
-      <input type="password" name="txt_password" class="form-control" placeholder="enter passowrd" />
+      <input type="password" name="txt_password" class="form-control" placeholder="entrez un mot de passe" />
     </div>
   </div>
      
