@@ -1,8 +1,8 @@
 <?php
-    require_once 'func.php';
+    require_once '../vendor/autoload.php';
+    use App\Functions;
 
     include("../lib/connexion.php");
-    
 
     $statement = $pdo->query('SELECT biens.id, biens.title, biens.surface, biens.rooms, biens.price, biens.image FROM biens ORDER BY biens.id DESC');
 ?>
@@ -17,7 +17,7 @@
             <div class="card-body">
                 <h5 class="card-title"><?= $bien['title'] ?></h5>
                 <p class="card-text"><?= $bien['surface'] ?> m2 - <?= $bien['rooms'] ?> pièces</p>
-                <p class="card-text"><?= formatPrice($bien['price']) ?> €</p>
+                <p class="card-text"><?= Functions::formatPrice($bien['price']) ?> €</p>
                 <a href="index.php?page=detail&id=<?=$bien['id']?>" class="btn btn-primary">Voir plus</a>
             </div>
         </div>

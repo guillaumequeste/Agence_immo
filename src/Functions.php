@@ -4,10 +4,8 @@ namespace App;
 
  class Functions {
 
-    private $price;
-
-    public function formatPrice()
+    public function formatPrice($number)
     {
-        return number_format($this->price, 0, ',', ' ');
+        return number_format($number, 0, ',', ' ');
     }
 }

@@ -1,4 +1,6 @@
 <?php
+    require_once '../vendor/autoload.php';
+    use App\Functions;
 
     include("../lib/connexion.php");
 
@@ -32,7 +34,7 @@
         <p><strong>Surface : </strong><?= '  '.$bien['surface'];?> m2</p>
         <p><strong>Nombre de pièces : </strong><?= '  '.$bien['rooms'];?></p>
         <p><strong>Nombre de chambres : </strong><?= '  '.$bien['bedrooms'];?></p>
-        <p><strong>Prix : </strong><?= number_format($bien['price'], 0, ',', ' '); ?> €</p>
+        <p><strong>Prix : </strong><?= Functions::formatPrice($bien['price'], 0, ',', ' '); ?> €</p>
         <p><strong>Adresse : </strong><?= '  '.$bien['address'];?></p>
         <p><strong>Code postal : </strong><?= '  '.$bien['postal_code'];?></p>
         <p><strong>Ville : </strong><?= '  '.$bien['city'];?></p>

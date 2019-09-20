@@ -1,4 +1,7 @@
 <?php
+    require_once '../vendor/autoload.php';
+    use App\Functions;
+
     include("../lib/connexion.php");
 
     session_start();
@@ -46,7 +49,7 @@
         while($bien = $statement->fetch()) : ?>
             <tr>
                 <td><?= $bien['title'] ?></td>
-                <td><?= number_format($bien['price'], 0, ',', ' ') ?> €</td>
+                <td><?= Functions::formatPrice($bien['price'], 0, ',', ' ') ?> €</td>
                 <td width=300>
                     <a class="btn btn-success" href="index.php?page=view&id=<?=$bien['id']?>">Voir</a>
                     <a class="btn btn-primary" href="index.php?page=update&id=<?=$bien['id']?>">Modifier</a>

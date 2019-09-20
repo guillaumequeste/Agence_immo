@@ -46,6 +46,11 @@ Autoloader:
   1 - générer le fichier autoload.php
   2 - indiquer dans la classe le namespace qui correspond au chemin du fichier
   3 - dans le fichier index.php, par exemple, require autoload.php et use le chemin vers la classe
-    ex : Text.php -> namespace App\Helpers;
-         index.php -> require '../vendor/autoload.php';
-                   -> use App\Helpers\Text;
+    ex : (class) Functions.php -> namespace App;
+         accueil.php -> require '../vendor/autoload.php';
+                   -> use App\Functions;
+                   -> <?= Functions::formatPrice($bien['price']) ?> (pour utiliser la fonction formatPrice)
+
+    (basiquement, on peut utiliser la fonction formatPrice dans le fichier 'func.php
+      -> dans le fichier accueil.php : require_once 'func.php';
+      -> puis : <?= formatPrice($bien['price']) ?>)
