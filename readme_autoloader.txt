@@ -51,6 +51,6 @@ Autoloader:
                    -> use App\Functions;
                    -> <?= Functions::formatPrice($bien['price']) ?> (pour utiliser la fonction formatPrice)
 
-    (basiquement, on peut utiliser la fonction formatPrice dans le fichier 'func.php
+    (basiquement, on peut utiliser la fonction formatPrice dans le fichier 'func.php'
       -> dans le fichier accueil.php : require_once 'func.php';
       -> puis : <?= formatPrice($bien['price']) ?>)

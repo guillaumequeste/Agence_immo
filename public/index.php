@@ -5,7 +5,7 @@
   require '../views/header.php';
 ?>
 
-<!-- Ici, on rélaise l'include -->
+<!-- Ici, on réalise l'include -->
 <?php include("../views/$fichier"); ?>
 
 <?php require '../views/footer.php'; ?>
