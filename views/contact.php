@@ -13,13 +13,12 @@
     $creneaux = CRENEAUX[$jour];
     // Vérifier si le magasin est ouvert
     $ouvert = Functions::in_creneaux($heure, $creneaux);
-
     // couleur si ouvert = vert, si fermé = rouge
     $color = $ouvert ? 'green' : 'red';
 ?>
 
 <div class="row pt-4">
-    <div class="col-md-8">
+    <div class="offset-md-1 col-md-10">
         <!-- message indiquant si le magasin est ouvert -->
         <?php if($ouvert): ?>
         <div class="alert alert-success">
@@ -30,7 +29,7 @@
             Le magasin est fermé
         </div>
         <?php endif ?>
-        <h2>Horaires d'ouverture :</h2>
+        <h3 style="text-align:center;">Horaires d'ouverture :</h3>
         <ul>
             <!-- afficher les horaires d'ouverture du magasin -->
             <?php foreach(JOURS as $k => $jour): ?>
