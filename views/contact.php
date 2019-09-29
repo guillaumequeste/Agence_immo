@@ -85,11 +85,11 @@
         <!-- message indiquant si le magasin est ouvert -->
         <?php if($ouvert): ?>
         <div class="alert alert-success">
-            Le magasin est ouvert
+            L'agence est ouverte
         </div>
         <?php else: ?>
         <div class="alert alert-danger">
-            Le magasin est fermé
+            L'agence est fermée
         </div>
         <?php endif ?>
         <h3 style="text-align:center;">Horaires d'ouverture</h3>
