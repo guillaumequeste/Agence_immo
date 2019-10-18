@@ -15,6 +15,9 @@ $page = $_REQUEST["page"] ?? "home";
     case 'contact' :
       $fichier = "contact.php";
       break;
+    case 'tab' :
+      $fichier = "tab.php";
+      break;
     case 'admin' :
       $fichier = "../admin/index.php";
       break;
@@ -81,10 +84,13 @@ $page = $_REQUEST["page"] ?? "home";
               <a class="nav-link" href="index.php?page=home">Accueil <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.php?page=contact">Contact</a>
+              <a class="nav-link <?php if ($_SERVER['QUERY_STRING'] == 'page=contact'){echo 'active';}?>" href="index.php?page=contact">Contact</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="index.php?page=login">Admin</a>
+              <a class="nav-link <?php if ($_SERVER['QUERY_STRING'] == 'page=login'){echo 'active';}?>" href="index.php?page=login">Admin</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link <?php if ($_SERVER['QUERY_STRING'] == 'page=tab'){echo 'active';}?>" href="index.php?page=tab">Tab</a>
             </li>
             <?php if (isset($_SESSION["user_login"])): ?>
             <li class="nav-item">
@@ -96,4 +102,3 @@ $page = $_REQUEST["page"] ?? "home";
 </nav>
 
 <main role="main" class="container" style="min-height:85vh;">
-
