@@ -128,6 +128,7 @@
 ?>
 
 <h1 style="text-align:center;">Ajouter un bien</h1>
+<h6 style="color:blue;">Veillez à bien remplir les 11 champs à chaque fois que vous validez le formulaire</h6>
 
 <?php if ($erreur): ?>
 <div class="alert alert-danger">
@@ -141,64 +142,64 @@
 
 <form class="form mb-4" action="index.php?page=insert" role="form" method="post" enctype="multipart/form-data">
     <div class="form-group">
-        <label for="type">Type :</label>
+        <label for="type"><span style="font-weight:bold;">1</span> - Type :</label>
         <select name="type">
             <option value="">Veuillez choisir un type</option>
             <option value="Maison">Maison</option>
             <option value="Appartement">Appartement</option>
         </select>
-        <span class="help-inline"><?= $typeError;?></span>
+        <span class="help-inline" style="color:red;"><?= $typeError;?></span>
     </div>
     <div class="form-group">
-        <label for="title">Titre :</label>
+        <label for="title"><span style="font-weight:bold;">2</span> - Titre :</label>
         <input type="text" class="form-control" id="title" name="title" placeholder="Titre" value="<?= $title;?>">
-        <span class="help-inline"><?= $titleError;?></span>
+        <span class="help-inline" style="color:red;"><?= $titleError;?></span>
     </div>
     <div class="form-group">
-        <label for="description">Description :</label>
+        <label for="description"><span style="font-weight:bold;">3</span> - Description :</label>
         <input type="textarea" class="form-control" id="description" name="description" placeholder="Description" value="<?= $description;?>">
-        <span class="help-inline"><?= $descriptionError;?></span>
+        <span class="help-inline" style="color:red;"><?= $descriptionError;?></span>
     </div>
     <div class="form-group">
-        <label for="surface">Surface (en m2) :</label>
+        <label for="surface"><span style="font-weight:bold;">4</span> - Surface (en m2) :</label>
         <input type="number" step="0.01" class="form-control" id="surface" name="surface" placeholder="Surface" value="<?= $surface;?>">
-        <span class="help-inline"><?= $surfaceError;?></span>
+        <span class="help-inline" style="color:red;"><?= $surfaceError;?></span>
     </div>
     <div class="form-group">
-        <label for="rooms">Nombre de pièces :</label>
+        <label for="rooms"><span style="font-weight:bold;">5</span> - Nombre de pièces :</label>
         <input type="number" step="0.01" class="form-control" id="rooms" name="rooms" placeholder="Nombre de pièces" value="<?= $rooms;?>">
-        <span class="help-inline"><?= $roomsError;?></span>
+        <span class="help-inline" style="color:red;"><?= $roomsError;?></span>
     </div>
     <div class="form-group">
-        <label for="bedrooms">Nombre de chambres :</label>
+        <label for="bedrooms"><span style="font-weight:bold;">6</span> - Nombre de chambres :</label>
         <input type="number" step="0.01" class="form-control" id="bedrooms" name="bedrooms" placeholder="Nombre de chambres" value="<?= $bedrooms;?>">
-        <span class="help-inline"><?= $bedroomsError;?></span>
+        <span class="help-inline" style="color:red;"><?= $bedroomsError;?></span>
     </div>
     <div class="form-group">
-        <label for="price">Prix (en €) :</label>
+        <label for="price"><span style="font-weight:bold;">7</span> - Prix (en €) :</label>
         <input type="number" step="0.01" class="form-control" id="price" name="price" placeholder="Prix" value="<?= $price;?>">
-        <span class="help-inline"><?= $priceError;?></span>
+        <span class="help-inline" style="color:red;"><?= $priceError;?></span>
     </div>
     <div class="form-group">
-        <label for="address">Adresse :</label>
+        <label for="address"><span style="font-weight:bold;">8</span> - Adresse :</label>
         <input type="textarea" class="form-control" id="address" name="address" placeholder="Adresse" value="<?= $address;?>">
-        <span class="help-inline"><?= $addressError;?></span>
+        <span class="help-inline" style="color:red;"><?= $addressError;?></span>
     </div>
     <div class="form-group">
-        <label for="postal_code">Code postal :</label>
+        <label for="postal_code"><span style="font-weight:bold;">9</span> - Code postal :</label>
         <input type="text" class="form-control" id="postal_code" name="postal_code" placeholder="Code postal" value="<?= $postal_code;?>">
-        <span class="help-inline"><?= $postal_codeError;?></span>
+        <span class="help-inline" style="color:red;"><?= $postal_codeError;?></span>
     </div>
     <div class="form-group">
-        <label for="city">Ville :</label>
+        <label for="city"><span style="font-weight:bold;">10</span> - Ville :</label>
         <input type="text" class="form-control" id="city" name="city" placeholder="Ville" value="<?= $city;?>">
-        <span class="help-inline"><?= $cityError;?></span>
+        <span class="help-inline" style="color:red;"><?= $cityError;?></span>
     </div>
     <div class="form-group">
-        <label for="image">Sélectionner une image:</label>
+        <label for="image"><span style="font-weight:bold;">11</span> - Sélectionner une image:</label>
         <input type="file" id="image" name="image">
         <span>Si le fichier existe déjà, renommer le fichier avant de l'ajouter.</span>
-        <span class="help-inline"><?= $imageError;?></span>
+        <span class="help-inline" style="color:red;"><?= $imageError;?></span>
     </div>
     <div class="form-actions">
         <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-pencil"></span> Ajouter</button>
